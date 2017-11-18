@@ -20,6 +20,7 @@
   "homepage": "https://github.com/smockle/alexandria#readme",
   "dependencies": {
     "@std/esm": "^0.16.0",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2"
   },
   "@std/esm": {
