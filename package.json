@@ -1,0 +1,19 @@
+{
+  "name": "alexandria",
+  "version": "1.0.0",
+  "description": "Bidirectional syncing for Instapaper and Pocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smockle/alexandria.git"
+  },
+  "author": "Clay Miller <clay@smockle.com> (https://smockle.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smockle/alexandria/issues"
+  },
+  "homepage": "https://github.com/smockle/alexandria#readme"
+}
