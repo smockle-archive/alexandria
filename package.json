@@ -6,6 +6,7 @@
   "module": "index.mjs",
   "scripts": {
     "start": "node -r @std/esm index.mjs",
+    "debug": "node --nolazy --inspect-brk=5858 -r @std/esm index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
