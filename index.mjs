@@ -17,54 +17,13 @@ dotenv.config();
 import https from "https";
 import express from "express";
 
+import { port } from "./routes/util";
+import index from "./routes/index";
+import authorizingPocket from "./routes/pocket/authorizing";
+import authorizedPocket from "./routes/pocket/authorized";
+
 const app = express();
-const port = 3000;
-
-function getRequestToken(consumerKey, redirectURI) {
-  const postData = JSON.stringify({
-    consumer_key: consumerKey,
-    redirect_uri: redirectURI
-  });
-  const options = {
-    hostname: "api.getpocket.com",
-    port: "443",
-    path: "/v3/oauth/request",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=UTF8",
-      "Content-Length": postData.length,
-      "X-Accept": "application/json"
-    }
-  };
-  var request = https.request(options, response => {
-    console.log("statusCode:", response.statusCode);
-    console.log("headers:", response.headers);
-
-    response.on("data", data => {
-      process.stdout.write(data);
-    });
-  });
-  request.on("error", error => {
-    console.error(error);
-  });
-  request.write(postData);
-  request.end();
-}
-
-app.get("/", (request, response) => {
-  setTimeout(
-    () =>
-      getRequestToken(
-        process.env.POCKET_CONSUMER_KEY,
-        `http://localhost:${port}/authorization-finished`
-      ),
-    0
-  );
-  response.send("Hello World!");
-});
-
-app.get("/authorization-finished", (request, response) =>
-  response.send(request.body.code)
-);
-
-app.listen(port, () => console.log("Listening on port 3000"));
+app.get("/", index);
+app.get("/pocket/authorizing", authorizingPocket);
+app.get("/pocket/authorized", authorizedPocket);
+app.listen(port, () => console.log(`Listening on port ${port}`));
